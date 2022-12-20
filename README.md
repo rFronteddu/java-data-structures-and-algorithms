@@ -1,7 +1,7 @@
 # java-data-structures-and-algorithms
 ## Intro
-The information and code on this repository is based on what I studied on the book introduction to Algorithms (Third Edition) by Cormen et. all. and 
-by content provided by the udemy course Data Structures and Algorithms: Deep Dive Using Java.
+The information and code on this repository are based on what I studied in the book Introduction to Algorithms (Third Edition) by Cormen et. all. and 
+by content provided by the Udemy course Data Structures and Algorithms: Deep Dive Using Java.
 
 ### What is a data structure
 A data structure is used to organize and store data. Each has strengths and weaknesses.
