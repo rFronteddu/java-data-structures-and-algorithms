@@ -17,6 +17,13 @@ repositories {
 }
 
 dependencies {
+    // code auto generation
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
     testImplementation 'org.slf4j:slf4j-api:1.7.25'
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
     testImplementation 'ch.qos.logback:logback-classic:1.4.1'
