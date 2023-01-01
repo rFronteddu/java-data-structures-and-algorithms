@@ -5,9 +5,9 @@ public class HashTableImpl <E>
 {
     private StoredValue<E>[] hashTable;
 
-    private CollisionStrategy<E> collisionStrategy;
+    private final CollisionStrategy<E> collisionStrategy;
 
-    public HashTableImpl (final Class<E> clazz, final CollisionStrategy<E> collisionStrategy) {
+    public HashTableImpl (final CollisionStrategy<E> collisionStrategy) {
         //noinspection unchecked
         hashTable = (StoredValue<E>[]) new StoredValue[10];
         this.collisionStrategy = collisionStrategy;
@@ -42,8 +42,18 @@ public class HashTableImpl <E>
         }
         hashKey = collisionStrategy.findKey (hashTable, key, hashKey);
         var e = hashKey == -1 ? null : hashTable[hashKey].value;
-        if (e != null) {
-            hashTable[hashKey] = null;
+        if (e == null) {
+            return null;
+        }
+
+        // rehash
+        var oldTable = hashTable;
+        //noinspection unchecked
+        hashTable = (StoredValue<E>[]) new StoredValue[hashTable.length];
+        for (StoredValue<E> eStoredValue : oldTable) {
+            if (eStoredValue != null) {
+                put (eStoredValue.key, eStoredValue.value);
+            }
         }
         return e;
     }

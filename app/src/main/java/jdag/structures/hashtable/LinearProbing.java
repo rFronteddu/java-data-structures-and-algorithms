@@ -1,8 +1,5 @@
 package jdag.structures.hashtable;
 
-import java.util.HashMap;
-import java.util.Objects;
-
 public class LinearProbing <E> implements CollisionStrategy<E>
 {
     @Override public int manageCollision (final StoredValue<E>[] hashTable, final String key, final int hashKey) {

@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HashTableImplTest
 {
     @Test public void putGetTest () {
-        HashTableImpl<String> hashTable = new HashTableImpl<> (String.class, null);
+        HashTableImpl<String> hashTable = new HashTableImpl<> (null);
         hashTable.put ("test", "uno");
         hashTable.put ("test2", "due");
         assertEquals ("uno", hashTable.get ("test"));
     }
 
     @Test public void putGetRemoveLinearTest () {
-        HashTableImpl<String> hashTable = new HashTableImpl<> (String.class, new LinearProbing<> ());
+        HashTableImpl<String> hashTable = new HashTableImpl<> (new LinearProbing<> ());
         var key1 = "test";
         var key2 = "ciao";
         var v1 = "uno";
@@ -31,5 +31,18 @@ public class HashTableImplTest
         assertNull (hashTable.remove (key1));
         hashTable.put (key1, v1);
         assertEquals (v1, hashTable.get (key1));
+    }
+
+    @Test public void putGetRemoveLinearTest2 () {
+        // this test requires re hashing
+        HashTableImpl<String> hashTable = new HashTableImpl<> (new LinearProbing<> ());
+        hashTable.put ("jones", "j");
+        hashTable.put ("doe", "d");
+        hashTable.put ("wilson", "mike");
+        hashTable.put ("smith", "mary");
+
+        hashTable.remove ("wilson");
+        hashTable.remove ("jones");
+        assertEquals ("mary", hashTable.get ("smith"));
     }
 }
