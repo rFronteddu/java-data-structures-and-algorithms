@@ -1,6 +1,6 @@
-package jdag.algorithms;
+package jdag.algorithms.sort;
 
-import static jdag.algorithms.Commons.swap;
+import static jdag.algorithms.sort.Commons.swap;
 
 public class SelectionSort
 {

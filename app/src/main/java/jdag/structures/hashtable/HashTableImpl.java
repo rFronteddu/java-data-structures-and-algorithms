@@ -1,7 +1,7 @@
 package jdag.structures.hashtable;
 
 
-public class HashTableImpl <E>
+public class HashTableImpl <E> implements HashTableInterface<E>
 {
     private StoredValue<E>[] hashTable;
 
@@ -14,13 +14,13 @@ public class HashTableImpl <E>
     }
 
     public E get (final String key) {
-        int hashKey = hashKey (key);
+        int hashKey = hashKey (key, hashTable.length);
         hashKey = collisionStrategy.findKey (hashTable, key, hashKey);
         return hashKey == -1 ? null : hashTable[hashKey].value;
     }
 
     public void put (final String key, final E value) {
-        int hashKey = hashKey (key);
+        int hashKey = hashKey (key, hashTable.length);
         if (hashTable[hashKey] == null) {
             hashTable[hashKey] = new StoredValue<> (key, value);
             return;
@@ -36,7 +36,7 @@ public class HashTableImpl <E>
     }
 
     public E remove (final String key) {
-        int hashKey = hashKey (key);
+        int hashKey = hashKey (key, hashTable.length);
         if (hashTable[hashKey] == null && collisionStrategy == null) {
             throw new RuntimeException ("Sorry, no element was found at position " + hashKey + " and a collision strategy has not been defined.");
         }
@@ -56,11 +56,5 @@ public class HashTableImpl <E>
             }
         }
         return e;
-    }
-
-    private int hashKey (final String key) {
-        // the more evenly the hashing function distributes the value,
-        // the faster the retrieval
-        return key.length () % hashTable.length;
     }
 }

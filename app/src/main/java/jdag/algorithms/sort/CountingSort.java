@@ -1,4 +1,4 @@
-package jdag.algorithms;
+package jdag.algorithms.sort;
 
 public class CountingSort
 {

@@ -1,5 +1,6 @@
 package jdag.algorithms;
 
+import jdag.algorithms.sort.*;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,12 @@ public class SortTest
     @Test public void countSortTest () {
         int[] intArray = {2, 5, 9, 8, 2, 8, 7, 10, 4, 3};
         CountingSort.sort (intArray, 1, 10);
+        assertTrue (isSorted (intArray));
+    }
+
+    @Test public void bucketSortTest () {
+        int[] intArray = {2, 5, 9, 8, 2, 8, 7, 10, 4, 3};
+        BucketSort.sort (intArray);
         assertTrue (isSorted (intArray));
     }
 
