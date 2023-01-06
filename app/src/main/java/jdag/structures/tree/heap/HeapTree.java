@@ -2,7 +2,7 @@ package jdag.structures.tree.heap;
 
 public class HeapTree
 {
-    private int[] heap;
+    public final int[] heap;
     private int size;
 
     public HeapTree (final int capacity) {
@@ -31,20 +31,12 @@ public class HeapTree
         return deletedValue;
     }
 
-
     public int getChild (final int index, boolean left) {
         return 2 * index + (left ? 1 : 2);
     }
 
     public int getParent (final int index) {
         return (index - 1) / 2;
-    }
-
-    public int peek () {
-        if (isEmpty ()) {
-            throw new IndexOutOfBoundsException ("Heap is empty");
-        }
-        return heap[0];
     }
 
     public boolean isEmpty () {
@@ -55,7 +47,6 @@ public class HeapTree
         return size == heap.length;
     }
 
-
     public void insert (final int value) {
         if (isFull ()) {
             throw new IndexOutOfBoundsException ("The heap is full");
@@ -63,6 +54,26 @@ public class HeapTree
         heap[size] = value;
         fixHeapAbove (size);
         size++;
+    }
+
+    public int peek () {
+        if (isEmpty ()) {
+            throw new IndexOutOfBoundsException ("Heap is empty");
+        }
+        return heap[0];
+    }
+
+    public void sort () {
+        int lastHeapIndex = size - 1;
+        for (int i = 0; i < lastHeapIndex; i++) {
+            // swap root with last element and reduce heap by 1
+            // whenever we swap
+            int tmp = heap[0];
+            heap[0] = heap[lastHeapIndex - i];
+            heap[lastHeapIndex - i] = tmp;
+            // -1 is to exclude where we put the root
+            fixHeapBelow (0, lastHeapIndex - i - 1);
+        }
     }
 
     // ###################################################################################################

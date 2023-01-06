@@ -1,6 +1,7 @@
 package jdag.algorithms;
 
 import jdag.algorithms.sort.*;
+import jdag.structures.tree.heap.HeapTree;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,21 @@ public class SortTest
         int[] intArray = getRandomArray ();
         MergeSort.sort (intArray, 0, intArray.length);
         assertTrue (isSorted (intArray));
+    }
+
+    @Test public void heapSortTest () {
+        HeapTree heapTree = new HeapTree (10);
+
+        heapTree.insert (80);
+        heapTree.insert (75);
+        heapTree.insert (60);
+        heapTree.insert (68);
+        heapTree.insert (55);
+        heapTree.insert (40);
+        heapTree.insert (52);
+        heapTree.insert (67);
+        heapTree.sort ();
+        isSorted (heapTree.heap);
     }
 
     @Test public void quickSortTest () {
