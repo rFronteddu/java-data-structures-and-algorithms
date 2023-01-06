@@ -1,5 +1,2 @@
 # java-data-structures-and-algorithms
-## Algorithms
-* Bubble Sort
-
-## Structures
+This repository contains several algorithms and data structures. See wiki for details.
